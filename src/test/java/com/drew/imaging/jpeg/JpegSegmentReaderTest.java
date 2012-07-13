@@ -42,7 +42,7 @@ public class JpegSegmentReaderTest
     @Test
     public void testLoadJpegWithoutExifDataReturnsNull() throws Exception
     {
-        String jpegNoExif = "Tests/com/drew/metadata/exif/noExif.jpg";
+        String jpegNoExif = "src/test/java/com/drew/metadata/exif/noExif.jpg";
         JpegSegmentReader reader = new JpegSegmentReader(new File(jpegNoExif));
         Assert.assertNull(reader.readSegment(JpegSegmentReader.SEGMENT_APP1));
     }
@@ -50,7 +50,7 @@ public class JpegSegmentReaderTest
     @Test
     public void testIsJpegWithJpegFile() throws Exception
     {
-        File jpeg = new File("Tests/com/drew/metadata/exif/withExif.jpg");
+        File jpeg = new File("src/test/java/com/drew/metadata/exif/withExif.jpg");
         try {
             new JpegSegmentReader(jpeg);
         } catch (JpegProcessingException e) {
@@ -61,7 +61,7 @@ public class JpegSegmentReaderTest
     @Test
     public void testIsJpegWithNonJpegFile() throws Exception
     {
-        File nonJpeg = new File("Tests/com/drew/imaging/jpeg/JpegSegmentReaderTest.java");
+        File nonJpeg = new File("src/test/java/com/drew/imaging/jpeg/JpegSegmentReaderTest.java");
         try {
             new JpegSegmentReader(nonJpeg);
             Assert.fail("shouldn't be able to construct JpegSegmentReader with non-jpeg file");
@@ -73,7 +73,7 @@ public class JpegSegmentReaderTest
     @Test
     public void testReadApp1Segment() throws Exception
     {
-        File jpeg = new File("Tests/com/drew/metadata/exif/withExif.jpg");
+        File jpeg = new File("src/test/java/com/drew/metadata/exif/withExif.jpg");
         JpegSegmentReader segmentReader = new JpegSegmentReader(jpeg);
         byte[] exifData = segmentReader.readSegment(JpegSegmentReader.SEGMENT_APP1);
         Assert.assertNotNull(exifData);
@@ -84,7 +84,7 @@ public class JpegSegmentReaderTest
     @Test
     public void testReadDQTSegment() throws Exception
     {
-        File jpeg = new File("Tests/com/drew/metadata/exif/withExif.jpg");
+        File jpeg = new File("src/test/java/com/drew/metadata/exif/withExif.jpg");
         JpegSegmentReader segmentReader = new JpegSegmentReader(jpeg);
         byte[] quantizationTableData = segmentReader.readSegment(JpegSegmentReader.SEGMENT_DQT);
         Assert.assertNotNull(quantizationTableData);
@@ -95,7 +95,7 @@ public class JpegSegmentReaderTest
     @Test
     public void testReadJpegByteArray() throws Exception
     {
-        File jpeg = new File("Tests/com/drew/metadata/exif/withExif.jpg");
+        File jpeg = new File("src/test/java/com/drew/metadata/exif/withExif.jpg");
         final byte[] bytes = TestHelper.loadFileBytes(jpeg);
         new JpegSegmentReader(bytes).readSegment(JpegSegmentReader.SEGMENT_APP1);
     }
@@ -103,7 +103,7 @@ public class JpegSegmentReaderTest
     @Test
     public void testCreateWithInputStream() throws Exception
     {
-        File jpeg = new File("Tests/com/drew/metadata/exif/withExif.jpg");
+        File jpeg = new File("src/test/java/com/drew/metadata/exif/withExif.jpg");
         InputStream in = new FileInputStream(jpeg);
         JpegSegmentReader reader = null;
         try {
@@ -118,7 +118,7 @@ public class JpegSegmentReaderTest
     @Test
     public void testReadSecondSegmentInstance() throws Exception
     {
-        File jpeg = new File("Tests/com/drew/imaging/jpeg/withExifAndIptc.jpg");
+        File jpeg = new File("src/test/java/com/drew/imaging/jpeg/withExifAndIptc.jpg");
         JpegSegmentReader reader = new JpegSegmentReader(jpeg);
         byte[] exifData0 = reader.readSegment(JpegSegmentReader.SEGMENT_APP1, 0);
         byte[] exifData1 = reader.readSegment(JpegSegmentReader.SEGMENT_APP1, 1);
@@ -129,7 +129,7 @@ public class JpegSegmentReaderTest
     @Test
     public void testReadNonExistentSegmentInstance() throws Exception
     {
-        File jpeg = new File("Tests/com/drew/imaging/jpeg/withExifAndIptc.jpg");
+        File jpeg = new File("src/test/java/com/drew/imaging/jpeg/withExifAndIptc.jpg");
         JpegSegmentReader reader = new JpegSegmentReader(jpeg);
         Assert.assertNull("third exif segment shouldn't exist", reader.readSegment(JpegSegmentReader.SEGMENT_APP1, 3));
     }
@@ -137,7 +137,7 @@ public class JpegSegmentReaderTest
     @Test
     public void testGetSegmentCount() throws Exception
     {
-        File jpeg = new File("Tests/com/drew/imaging/jpeg/withExifAndIptc.jpg");
+        File jpeg = new File("src/test/java/com/drew/imaging/jpeg/withExifAndIptc.jpg");
         JpegSegmentReader reader = new JpegSegmentReader(jpeg);
         Assert.assertEquals(2, reader.getSegmentCount(JpegSegmentReader.SEGMENT_APP1));
         Assert.assertEquals(1, reader.getSegmentCount(JpegSegmentReader.SEGMENT_APP2));
@@ -147,7 +147,7 @@ public class JpegSegmentReaderTest
     @Test
     public void testCreateWithFileAndReadMultipleSegments() throws Exception
     {
-        File jpeg = new File("Tests/com/drew/imaging/jpeg/withExifAndIptc.jpg");
+        File jpeg = new File("src/test/java/com/drew/imaging/jpeg/withExifAndIptc.jpg");
         JpegSegmentReader reader = new JpegSegmentReader(jpeg);
         validateMultipleSegmentRead(reader);
     }
@@ -155,7 +155,7 @@ public class JpegSegmentReaderTest
     @Test
     public void testCreateWithInputStreamAndReadMultipleSegments() throws Exception
     {
-        File jpeg = new File("Tests/com/drew/imaging/jpeg/withExifAndIptc.jpg");
+        File jpeg = new File("src/test/java/com/drew/imaging/jpeg/withExifAndIptc.jpg");
         InputStream in = new FileInputStream(jpeg);
         JpegSegmentReader reader = new JpegSegmentReader(in, false);
         validateMultipleSegmentRead(reader);

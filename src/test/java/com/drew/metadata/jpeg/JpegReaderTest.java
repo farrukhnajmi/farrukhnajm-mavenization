@@ -43,7 +43,7 @@ public class JpegReaderTest
     public void setUp() throws JpegProcessingException, IOException
     {
         // use a known testing image
-        File jpegFile = new File("Tests/com/drew/metadata/jpeg/simple.jpg");
+        File jpegFile = new File("src/test/java/com/drew/metadata/jpeg/simple.jpg");
         final byte[] data = new JpegSegmentReader(jpegFile).readSegment(JpegSegmentReader.SEGMENT_SOF0);
         MetadataReader reader = new JpegReader();
         Metadata metadata = new Metadata();
@@ -120,7 +120,7 @@ public class JpegReaderTest
     public void testJpegWithAudio() throws Exception
     {
         // use a known testing image
-        File jpegFile = new File("Tests/com/drew/metadata/jpeg/audioPresent.jpg");
+        File jpegFile = new File("src/test/java/com/drew/metadata/jpeg/audioPresent.jpg");
 
         JpegSegmentReader jpegSegmentReader = new JpegSegmentReader(jpegFile);
         byte[] segment1Bytes = jpegSegmentReader.readSegment(JpegSegmentReader.SEGMENT_APP2);
@@ -148,7 +148,7 @@ public class JpegReaderTest
 //        System.out.println(jpegSegmentReader.readSegment(JpegSegmentReader.SEGMENT_SOI));
 
         // write the segment's data out to a wav file...
-        File audioFile = new File("Tests/com/drew/metadata/jpeg/audio.wav");
+        File audioFile = new File("src/test/java/com/drew/metadata/jpeg/audio.wav");
         FileOutputStream os = null;
         try
         {

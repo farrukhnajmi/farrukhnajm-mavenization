@@ -32,7 +32,7 @@ public class IccReaderTest extends TestCase
 {
     public void testExtract() throws Exception
     {
-        String iccSegmentFile = "Tests/com/drew/metadata/icc/iccDataInvalid1.app2bytes";
+        String iccSegmentFile = "src/test/java/com/drew/metadata/icc/iccDataInvalid1.app2bytes";
         byte[] app2Bytes = ExtractAppSegmentBytesToFileUtility.read(new File(iccSegmentFile));
 
         // skip first 14 bytes

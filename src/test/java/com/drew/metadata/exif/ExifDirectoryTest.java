@@ -55,7 +55,7 @@ public class ExifDirectoryTest
     @Test
     public void testGetThumbnailData() throws Exception
     {
-        File file = new File("Tests/com/drew/metadata/exif/withExif.jpg");
+        File file = new File("src/test/java/com/drew/metadata/exif/withExif.jpg");
         Metadata metadata = JpegMetadataReader.readMetadata(file);
         Assert.assertFalse(metadata.hasErrors());
 
@@ -76,7 +76,7 @@ public class ExifDirectoryTest
     @Test
     public void testWriteThumbnail() throws Exception
     {
-        File file = new File("Tests/com/drew/metadata/exif/manuallyAddedThumbnail.jpg");
+        File file = new File("src/test/java/com/drew/metadata/exif/manuallyAddedThumbnail.jpg");
         Metadata metadata = JpegMetadataReader.readMetadata(file);
         Assert.assertFalse(metadata.hasErrors());
 
@@ -109,7 +109,7 @@ public class ExifDirectoryTest
     @Test
     public void testResolution() throws JpegProcessingException, IOException, MetadataException
     {
-        File file = new File("Tests/com/drew/metadata/exif/withUncompressedRGBThumbnail.jpg");
+        File file = new File("src/test/java/com/drew/metadata/exif/withUncompressedRGBThumbnail.jpg");
         Metadata metadata = JpegMetadataReader.readMetadata(file);
 
         ExifThumbnailDirectory thumbnailDirectory = metadata.getDirectory(ExifThumbnailDirectory.class);

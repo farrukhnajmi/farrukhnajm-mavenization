@@ -33,7 +33,7 @@ public class SonyType6MakernoteTest
 {
     @Test public void testSonyType6Makernote() throws ClassNotFoundException, IOException
     {
-        Metadata metadata = TestHelper.readJpegMetadataFile("Tests/com/drew/metadata/exif/sonyType6.metadata");
+        Metadata metadata = TestHelper.readJpegMetadataFile("src/test/java/com/drew/metadata/exif/sonyType6.metadata");
 
         SonyType6MakernoteDirectory directory = metadata.getDirectory(SonyType6MakernoteDirectory.class);
 

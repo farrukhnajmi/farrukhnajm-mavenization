@@ -61,7 +61,7 @@ public class ExifIFD0DescriptorTest
     @Test
     public void testWindowsXpFields() throws Exception
     {
-        String fileName = "Tests/com/drew/metadata/exif/windowsXpFields.jpg";
+        String fileName = "src/test/java/com/drew/metadata/exif/windowsXpFields.jpg";
         Metadata metadata = ImageMetadataReader.readMetadata(new File(fileName));
 //        Metadata metadata = new Metadata();
 //        final byte[] data = new JpegSegmentReader(new File(fileName)).readSegment(JpegSegmentReader.SEGMENT_APP1);

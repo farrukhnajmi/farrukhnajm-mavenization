@@ -44,7 +44,7 @@ public class XmpReaderTest
     public void setUp() throws Exception
     {
         // use a known testing image
-        File metadataFile = new File("Tests/com/drew/metadata/xmp/withXmpAndIptc.metadata");
+        File metadataFile = new File("src/test/java/com/drew/metadata/xmp/withXmpAndIptc.metadata");
         JpegSegmentData jpegSegmentData = JpegSegmentData.fromFile(metadataFile);
         Metadata metadata = new Metadata();
         final byte[] data = jpegSegmentData.getSegment(JpegSegmentReader.SEGMENT_APP1, 1);

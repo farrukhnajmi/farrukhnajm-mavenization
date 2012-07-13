@@ -37,7 +37,7 @@ public class IptcReaderTest
 {
     @Test public void testIptc1BytesFromFile() throws Exception
     {
-        final byte[] bytes = TestHelper.loadFileBytes(new File("Tests/com/drew/metadata/iptc/iptc1.bytes"));
+        final byte[] bytes = TestHelper.loadFileBytes(new File("src/test/java/com/drew/metadata/iptc/iptc1.bytes"));
 
         Metadata metadata = new Metadata();
         MetadataReader reader = new IptcReader();
@@ -102,7 +102,7 @@ public class IptcReaderTest
 
     @Test public void testIptc2Photoshop6BytesFromFile() throws Exception
     {
-        final byte[] bytes = TestHelper.loadFileBytes(new File("Tests/com/drew/metadata/iptc/iptc2-photoshop6.bytes"));
+        final byte[] bytes = TestHelper.loadFileBytes(new File("src/test/java/com/drew/metadata/iptc/iptc2-photoshop6.bytes"));
 
         Metadata metadata = new Metadata();
         new IptcReader().extract(new ByteArrayReader(bytes), metadata);

@@ -42,7 +42,7 @@ public class NikonType2MakernoteTest1
     @Before
     public void setUp() throws Exception
     {
-        File metadataFile = new File("Tests/com/drew/metadata/exif/nikonMakernoteType2a.metadata");
+        File metadataFile = new File("src/test/java/com/drew/metadata/exif/nikonMakernoteType2a.metadata");
         Metadata metadata = new Metadata();
         final byte[] data = JpegSegmentData.fromFile(metadataFile).getSegment(JpegSegmentReader.SEGMENT_APP1);
         Assert.assertNotNull(data);

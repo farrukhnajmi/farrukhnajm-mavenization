@@ -39,7 +39,7 @@ public class JpegMetadataReaderTest
     @Test
     public void testExtractMetadata() throws Exception
     {
-        File withExif = new File("Tests/com/drew/metadata/exif/withExif.jpg");
+        File withExif = new File("src/test/java/com/drew/metadata/exif/withExif.jpg");
         Metadata metadata = JpegMetadataReader.readMetadata(withExif);
         Assert.assertTrue(metadata.containsDirectory(ExifSubIFDDirectory.class));
         Directory directory = metadata.getOrCreateDirectory(ExifSubIFDDirectory.class);
@@ -49,7 +49,7 @@ public class JpegMetadataReaderTest
     @Test
     public void testExtractMetadataUsingInputStream() throws Exception
     {
-        File withExif = new File("Tests/com/drew/metadata/exif/withExif.jpg");
+        File withExif = new File("src/test/java/com/drew/metadata/exif/withExif.jpg");
         InputStream in = new BufferedInputStream(new FileInputStream((withExif)));
         Metadata metadata = JpegMetadataReader.readMetadata(in);
         Assert.assertTrue(metadata.containsDirectory(ExifSubIFDDirectory.class));

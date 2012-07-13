@@ -47,7 +47,7 @@ public class PsdReaderTest
     @Test
     public void test8x8x8bitGrayscale() throws Exception
     {
-        PsdHeaderDirectory directory = readPsdHeader("Tests/com/drew/metadata/photoshop/8x4x8bit-Grayscale.psd");
+        PsdHeaderDirectory directory = readPsdHeader("src/test/java/com/drew/metadata/photoshop/8x4x8bit-Grayscale.psd");
         Assert.assertEquals(8, directory.getInt(PsdHeaderDirectory.TAG_IMAGE_WIDTH));
         Assert.assertEquals(4, directory.getInt(PsdHeaderDirectory.TAG_IMAGE_HEIGHT));
         Assert.assertEquals(8, directory.getInt(PsdHeaderDirectory.TAG_BITS_PER_CHANNEL));
@@ -58,7 +58,7 @@ public class PsdReaderTest
     @Test
     public void test10x12x16bitCMYK() throws Exception
     {
-        PsdHeaderDirectory directory = readPsdHeader("Tests/com/drew/metadata/photoshop/10x12x16bit-CMYK.psd");
+        PsdHeaderDirectory directory = readPsdHeader("src/test/java/com/drew/metadata/photoshop/10x12x16bit-CMYK.psd");
         Assert.assertEquals(10, directory.getInt(PsdHeaderDirectory.TAG_IMAGE_WIDTH));
         Assert.assertEquals(12, directory.getInt(PsdHeaderDirectory.TAG_IMAGE_HEIGHT));
         Assert.assertEquals(16, directory.getInt(PsdHeaderDirectory.TAG_BITS_PER_CHANNEL));

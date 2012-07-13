@@ -42,7 +42,7 @@ public class NikonType2MakernoteTest2
     @Before
     public void setUp() throws Exception
     {
-        File nikonJpeg = new File("Tests/com/drew/metadata/exif/nikonMakernoteType2b.jpg");
+        File nikonJpeg = new File("src/test/java/com/drew/metadata/exif/nikonMakernoteType2b.jpg");
         Metadata metadata = JpegMetadataReader.readMetadata(nikonJpeg);
         
         _nikonDirectory = metadata.getDirectory(NikonType2MakernoteDirectory.class);

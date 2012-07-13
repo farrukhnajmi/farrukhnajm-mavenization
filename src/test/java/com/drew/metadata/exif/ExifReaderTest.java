@@ -66,7 +66,7 @@ public class ExifReaderTest
     @Test
     public void testLoadFujiFilmJpeg() throws Exception
     {
-        String jpegWithExif = "Tests/com/drew/metadata/exif/withExif.jpg";
+        String jpegWithExif = "src/test/java/com/drew/metadata/exif/withExif.jpg";
         Metadata metadata = new Metadata();
         final byte[] data = new JpegSegmentReader(new File(jpegWithExif)).readSegment(JpegSegmentReader.SEGMENT_APP1);
         Assert.assertNotNull(data);
@@ -98,7 +98,7 @@ public class ExifReaderTest
         // This image was created via a resize in ACDSee.
         // It seems to have a reference to an IFD starting outside the data segment.
         // I've noticed that ACDSee reports a Comment for this image, yet ExifReader doesn't report one.
-        Directory directory = readDirectoryFromJpegFile("Tests/com/drew/metadata/exif/crash01.jpg", ExifSubIFDDirectory.class);
+        Directory directory = readDirectoryFromJpegFile("src/test/java/com/drew/metadata/exif/crash01.jpg", ExifSubIFDDirectory.class);
 
         Assert.assertTrue(directory.getTagCount() > 0);
     }
@@ -106,7 +106,7 @@ public class ExifReaderTest
     @Test
     public void testDateTime() throws Exception
     {
-        Directory directory = readDirectoryFromJpegFile("Tests/com/drew/metadata/exif/manuallyAddedThumbnail.jpg", ExifIFD0Directory.class);
+        Directory directory = readDirectoryFromJpegFile("src/test/java/com/drew/metadata/exif/manuallyAddedThumbnail.jpg", ExifIFD0Directory.class);
 
         Assert.assertEquals("2002:11:27 18:00:35", directory.getString(ExifIFD0Directory.TAG_DATETIME));
     }
@@ -114,7 +114,7 @@ public class ExifReaderTest
     @Test
     public void testThumbnailXResolution() throws Exception
     {
-        Directory directory = readDirectoryFromJpegFile("Tests/com/drew/metadata/exif/manuallyAddedThumbnail.jpg", ExifThumbnailDirectory.class);
+        Directory directory = readDirectoryFromJpegFile("src/test/java/com/drew/metadata/exif/manuallyAddedThumbnail.jpg", ExifThumbnailDirectory.class);
 
         Rational rational = directory.getRational(ExifThumbnailDirectory.TAG_X_RESOLUTION);
         Assert.assertNotNull(rational);
@@ -125,7 +125,7 @@ public class ExifReaderTest
     @Test
     public void testThumbnailYResolution() throws Exception
     {
-        Directory directory = readDirectoryFromJpegFile("Tests/com/drew/metadata/exif/manuallyAddedThumbnail.jpg", ExifThumbnailDirectory.class);
+        Directory directory = readDirectoryFromJpegFile("src/test/java/com/drew/metadata/exif/manuallyAddedThumbnail.jpg", ExifThumbnailDirectory.class);
 
         Rational rational = directory.getRational(ExifThumbnailDirectory.TAG_Y_RESOLUTION);
         Assert.assertNotNull(rational);
@@ -136,7 +136,7 @@ public class ExifReaderTest
     @Test
     public void testThumbnailOffset() throws Exception
     {
-        Directory directory = readDirectoryFromJpegFile("Tests/com/drew/metadata/exif/manuallyAddedThumbnail.jpg", ExifThumbnailDirectory.class);
+        Directory directory = readDirectoryFromJpegFile("src/test/java/com/drew/metadata/exif/manuallyAddedThumbnail.jpg", ExifThumbnailDirectory.class);
 
         Assert.assertEquals(192, directory.getInt(ExifThumbnailDirectory.TAG_THUMBNAIL_OFFSET));
     }
@@ -144,7 +144,7 @@ public class ExifReaderTest
     @Test
     public void testThumbnailLength() throws Exception
     {
-        Directory directory = readDirectoryFromJpegFile("Tests/com/drew/metadata/exif/manuallyAddedThumbnail.jpg", ExifThumbnailDirectory.class);
+        Directory directory = readDirectoryFromJpegFile("src/test/java/com/drew/metadata/exif/manuallyAddedThumbnail.jpg", ExifThumbnailDirectory.class);
 
         Assert.assertEquals(2970, directory.getInt(ExifThumbnailDirectory.TAG_THUMBNAIL_LENGTH));
     }
@@ -152,7 +152,7 @@ public class ExifReaderTest
     @Test
     public void testThumbnailData() throws Exception
     {
-        ExifThumbnailDirectory directory = readDirectoryFromJpegFile("Tests/com/drew/metadata/exif/manuallyAddedThumbnail.jpg", ExifThumbnailDirectory.class);
+        ExifThumbnailDirectory directory = readDirectoryFromJpegFile("src/test/java/com/drew/metadata/exif/manuallyAddedThumbnail.jpg", ExifThumbnailDirectory.class);
         final byte[] thumbnailData = directory.getThumbnailData();
         Assert.assertNotNull(thumbnailData);
         Assert.assertEquals(2970, thumbnailData.length);
@@ -161,7 +161,7 @@ public class ExifReaderTest
     @Test
     public void testThumbnailCompression() throws Exception
     {
-        Directory directory = readDirectoryFromJpegFile("Tests/com/drew/metadata/exif/manuallyAddedThumbnail.jpg", ExifThumbnailDirectory.class);
+        Directory directory = readDirectoryFromJpegFile("src/test/java/com/drew/metadata/exif/manuallyAddedThumbnail.jpg", ExifThumbnailDirectory.class);
 
         // 6 means JPEG compression
         Assert.assertEquals(6, directory.getInt(ExifThumbnailDirectory.TAG_THUMBNAIL_COMPRESSION));
@@ -173,7 +173,7 @@ public class ExifReaderTest
         // an error has been discovered in Exif data segments where a directory is referenced
         // repeatedly.  thanks to Alistair Dickie for providing the sample image used in this
         // unit test.
-        readDirectoryFromMetadataFile("Tests/com/drew/metadata/exif/recursiveDirectories.metadata", ExifSubIFDDirectory.class);
+        readDirectoryFromMetadataFile("src/test/java/com/drew/metadata/exif/recursiveDirectories.metadata", ExifSubIFDDirectory.class);
     }
 
     @Test
@@ -182,8 +182,8 @@ public class ExifReaderTest
         // This metadata contains different orientations for the thumbnail and the main image.
         // These values used to be merged into a single directory, causing errors.
         // This unit test demonstrates correct behaviour.
-        final ExifIFD0Directory ifd0Directory = readDirectoryFromMetadataFile("Tests/com/drew/metadata/exif/repeatedOrientationTagWithDifferentValues.metadata", ExifIFD0Directory.class);
-        final ExifThumbnailDirectory thumbnailDirectory = readDirectoryFromMetadataFile("Tests/com/drew/metadata/exif/repeatedOrientationTagWithDifferentValues.metadata", ExifThumbnailDirectory.class);
+        final ExifIFD0Directory ifd0Directory = readDirectoryFromMetadataFile("src/test/java/com/drew/metadata/exif/repeatedOrientationTagWithDifferentValues.metadata", ExifIFD0Directory.class);
+        final ExifThumbnailDirectory thumbnailDirectory = readDirectoryFromMetadataFile("src/test/java/com/drew/metadata/exif/repeatedOrientationTagWithDifferentValues.metadata", ExifThumbnailDirectory.class);
 
         Assert.assertEquals(1, ifd0Directory.getInt(ExifIFD0Directory.TAG_ORIENTATION));
         Assert.assertEquals(8, thumbnailDirectory.getInt(ExifThumbnailDirectory.TAG_ORIENTATION));
@@ -192,24 +192,24 @@ public class ExifReaderTest
 /*
     public void testUncompressedYCbCrThumbnail() throws Exception
     {
-        String fileName = "Tests/com/drew/metadata/exif/withUncompressedYCbCrThumbnail.jpg";
-        String thumbnailFileName = "Tests/com/drew/metadata/exif/withUncompressedYCbCrThumbnail.bmp";
+        String fileName = "src/test/java/com/drew/metadata/exif/withUncompressedYCbCrThumbnail.jpg";
+        String thumbnailFileName = "src/test/java/com/drew/metadata/exif/withUncompressedYCbCrThumbnail.bmp";
         Metadata metadata = new ExifReader(new File(fileName)).extract();
         ExifSubIFDDirectory directory = (ExifSubIFDDirectory)metadata.getOrCreateDirectory(ExifSubIFDDirectory.class);
         directory.writeThumbnail(thumbnailFileName);
 
-        fileName = "Tests/com/drew/metadata/exif/withUncompressedYCbCrThumbnail2.jpg";
-        thumbnailFileName = "Tests/com/drew/metadata/exif/withUncompressedYCbCrThumbnail2.bmp";
+        fileName = "src/test/java/com/drew/metadata/exif/withUncompressedYCbCrThumbnail2.jpg";
+        thumbnailFileName = "src/test/java/com/drew/metadata/exif/withUncompressedYCbCrThumbnail2.bmp";
         metadata = new ExifReader(new File(fileName)).extract();
         directory = (ExifSubIFDDirectory)metadata.getOrCreateDirectory(ExifSubIFDDirectory.class);
         directory.writeThumbnail(thumbnailFileName);
-        fileName = "Tests/com/drew/metadata/exif/withUncompressedYCbCrThumbnail3.jpg";
-        thumbnailFileName = "Tests/com/drew/metadata/exif/withUncompressedYCbCrThumbnail3.bmp";
+        fileName = "src/test/java/com/drew/metadata/exif/withUncompressedYCbCrThumbnail3.jpg";
+        thumbnailFileName = "src/test/java/com/drew/metadata/exif/withUncompressedYCbCrThumbnail3.bmp";
         metadata = new ExifReader(new File(fileName)).extract();
         directory = (ExifSubIFDDirectory)metadata.getOrCreateDirectory(ExifSubIFDDirectory.class);
         directory.writeThumbnail(thumbnailFileName);
-        fileName = "Tests/com/drew/metadata/exif/withUncompressedYCbCrThumbnail4.jpg";
-        thumbnailFileName = "Tests/com/drew/metadata/exif/withUncompressedYCbCrThumbnail4.bmp";
+        fileName = "src/test/java/com/drew/metadata/exif/withUncompressedYCbCrThumbnail4.jpg";
+        thumbnailFileName = "src/test/java/com/drew/metadata/exif/withUncompressedYCbCrThumbnail4.bmp";
         metadata = new ExifReader(new File(fileName)).extract();
         directory = (ExifSubIFDDirectory)metadata.getOrCreateDirectory(ExifSubIFDDirectory.class);
         directory.writeThumbnail(thumbnailFileName);
@@ -217,8 +217,8 @@ public class ExifReaderTest
 
     public void testUncompressedRGBThumbnail() throws Exception
     {
-        String fileName = "Tests/com/drew/metadata/exif/withUncompressedRGBThumbnail.jpg";
-        String thumbnailFileName = "Tests/com/drew/metadata/exif/withUncompressedRGBThumbnail.bmp";
+        String fileName = "src/test/java/com/drew/metadata/exif/withUncompressedRGBThumbnail.jpg";
+        String thumbnailFileName = "src/test/java/com/drew/metadata/exif/withUncompressedRGBThumbnail.bmp";
         Metadata metadata = new ExifReader(new File(fileName)).extract();
         ExifSubIFDDirectory directory = (ExifSubIFDDirectory)metadata.getOrCreateDirectory(ExifSubIFDDirectory.class);
         directory.writeThumbnail(thumbnailFileName);
